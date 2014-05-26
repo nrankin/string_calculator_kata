@@ -23,8 +23,17 @@ describe StringCalculator do
       it 'should return 8 for "3,1,4"' do
         expect(subject.add('3,1,4') == 8).to be_true
       end
+      it 'should return 21 for "5,1,3,2,7,1,2"' do
+        expect(subject.add('5,1,3,2,7,1,2') == 21).to be_true
+      end
 
     end
+    context 'still works when the delimeter is /n' do
+      it 'should return 21 for "5/n1/n3/n2/n7/n1/n2"' do
+        expect(subject.add('5/n1/n3/n2/n7/n1/n2') == 21).to be_true
+      end
+    end
+
   end
 
 

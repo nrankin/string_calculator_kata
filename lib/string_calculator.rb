@@ -1,7 +1,7 @@
 class StringCalculator
    def add(string_numbers)
 
-     numbers = string_numbers.split(',')
+     numbers = string_numbers.split(%r{[,/n]})
      if numbers.compact.length == 0
        return 0
      end
