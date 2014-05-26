@@ -1,12 +1,15 @@
 class StringCalculator
    def add(string_numbers)
-
-     numbers = string_numbers.split(%r{[,/n]})
-     if numbers.compact.length == 0
-       return 0
+     if string_numbers.empty?
+       0
+     else
+       numbers = string_numbers.split(%r{[,/n]})
+       calculate(numbers)
      end
-     total = numbers.collect{|x| x.to_i}
-     total.reduce(:+)
+   end
 
+   def calculate(numbers)
+     total = numbers.collect { |x| x.to_i }
+     total.reduce(:+)
    end
 end
