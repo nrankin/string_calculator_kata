@@ -15,6 +15,15 @@ describe StringCalculator do
       it 'should return 2 for "1,1"' do
          expect(subject.add('1,1') == 2).to be_true
       end
+      it 'should return 3 for "1,2"' do
+        expect(subject.add('1,2') == 3).to be_true
+      end
+    end
+    context 'when there are three numbers in the string' do
+      it 'should return 8 for "3,1,4"' do
+        expect(subject.add('3,1,4') == 8).to be_true
+      end
+
     end
   end
 
