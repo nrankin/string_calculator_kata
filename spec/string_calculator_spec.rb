@@ -29,11 +29,25 @@ describe StringCalculator do
 
     end
     context 'still works when the delimeter is /n' do
-      it 'should return 21 for "5/n1/n3/n2/n7/n1/n2"' do
-        expect(subject.add('5/n1/n3/n2/n7/n1/n2') == 21).to be_true
+      it 'should return 21 for "5\n1\n3\n2\n7\n1\n2"' do
+        expect(subject.add('5\n1\n3\n2\n7\n1\n2') == 21).to be_true
       end
-      it 'should return 8 for "3/n1,4"' do
-        expect(subject.add('3/n1,4') == 8).to be_true
+      it 'should return 8 for "3\n1,4"' do
+        expect(subject.add('3\n1,4') == 8).to be_true
+      end
+    end
+    context 'a delimiter can be passed in on the first line' do
+      it 'should find the second line doesn"t start with \n' do
+        numbers = subject.split('//:\n3:1:4')
+
+        expect(numbers[0] == '3').to be_true
+        expect(numbers[0] == '\n').to be_false
+      end
+      it 'should return 8 for "//:\n3:1:4"' do
+        expect(subject.add('//:\n3:1:4') == 8).to be_true
+      end
+      it 'should return 8 for "//;\n3;1;4"' do
+        expect(subject.add('//;\n3;1;4') == 8).to be_true
       end
     end
 
