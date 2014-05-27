@@ -39,12 +39,10 @@ class StringCalculator
 
    def check_negatives(total)
      negatives = Array.new(total)
-    negatives.keep_if {|x| x < 0 }
+     negatives.keep_if {|x| x < 0 }
 
      unless negatives.empty?
-       puts 'found negative'
-       puts negatives
-       raise(ArgumentError)
+       raise(ArgumentError, "Negatives Not Allowed: " + negatives.to_s)
      end
 
    end

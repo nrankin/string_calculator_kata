@@ -50,9 +50,15 @@ describe StringCalculator do
         expect(subject.add('//;\n3;1;4') == 8).to be_true
       end
     end
-    context 'negatives not allowed' do
+    context 'an exception should be thrown if negatives are passed in' do
       it 'should throw an exception if -1 is passed in' do
         expect{subject.add('-1')}.to raise_error(ArgumentError)
+      end
+      it 'should have the message "Negatives Not Allowed"' do
+        expect{subject.add('-1')}.to raise_error(ArgumentError, "Negatives Not Allowed: [-1]")
+      end
+      it 'should include all supplied negative numbers in the error message' do
+        expect{subject.add('-1,-4,-2')}.to raise_error(ArgumentError, "Negatives Not Allowed: [-1, -4, -2]")
       end
     end
 
