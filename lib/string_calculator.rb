@@ -21,12 +21,12 @@ class StringCalculator
 
    private
 
-   def split_by_default_delimiters(string_numbers)
-     string_numbers.split(%r{[,\\n]})
+   def split_by_default_delimiters(string_argument)
+     string_argument.split(%r{[,\\n]})
    end
 
-   def split_by_custom_delimiters(string_numbers)
-     lines = string_numbers.split(%r{\\n}, 2)
+   def split_by_custom_delimiters(string_argument)
+     lines = string_argument.split(%r{\\n}, 2)
      lines[1].split(delimiter(lines))
    end
 
@@ -35,19 +35,22 @@ class StringCalculator
    end
 
    def calculate(string_numbers)
-     numbers = string_numbers.collect { |x| x.to_i }
-     check_negatives(numbers)
+     negatives = Array.new
+     numbers = string_numbers.map do |x|
+       x = x.to_i
+       if x < 0
+         negatives << x
+       end
+       x
+     end
+     check_negatives(negatives)
      numbers.reduce(:+)
    end
 
-   def check_negatives(numbers)
-     negatives = Array.new(numbers)
-     negatives.keep_if {|x| x < 0 }
-
+   def check_negatives(negatives)
      unless negatives.empty?
        raise(ArgumentError, "Negatives Not Allowed: " + negatives.to_s)
      end
-
    end
 
 end
