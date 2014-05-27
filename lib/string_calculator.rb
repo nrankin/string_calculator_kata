@@ -1,4 +1,7 @@
 class StringCalculator
+
+  DELIMITER_INDICATOR = '//'
+
    def add(string_numbers)
      if string_numbers.empty?
        0
@@ -28,7 +31,7 @@ class StringCalculator
    end
 
    def delimiter(lines)
-     lines[0].slice(2,(lines[0].length) -1)
+     lines[0].slice(DELIMITER_INDICATOR.length,(lines[0].length) -1)
    end
 
    def calculate(numbers)
