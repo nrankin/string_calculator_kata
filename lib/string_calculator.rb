@@ -33,7 +33,20 @@ class StringCalculator
 
    def calculate(numbers)
      total = numbers.collect { |x| x.to_i }
+     check_negatives(total)
      total.reduce(:+)
+   end
+
+   def check_negatives(total)
+     negatives = Array.new(total)
+    negatives.keep_if {|x| x < 0 }
+
+     unless negatives.empty?
+       puts 'found negative'
+       puts negatives
+       raise(ArgumentError)
+     end
+
    end
 
 end

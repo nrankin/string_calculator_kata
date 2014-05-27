@@ -50,6 +50,11 @@ describe StringCalculator do
         expect(subject.add('//;\n3;1;4') == 8).to be_true
       end
     end
+    context 'negatives not allowed' do
+      it 'should throw an exception if -1 is passed in' do
+        expect{subject.add('-1')}.to raise_error(ArgumentError)
+      end
+    end
 
   end
 
