@@ -2,20 +2,20 @@ class StringCalculator
 
   DELIMITER_INDICATOR = '//'
 
-   def add(string_numbers)
-     if string_numbers.empty?
+   def add(string_argument)
+     if string_argument.empty?
        0
      else
-       numbers = split(string_numbers)
-       calculate(numbers)
+       string_numbers = split(string_argument)
+       calculate(string_numbers)
      end
    end
 
-   def split(string_numbers)
-     if string_numbers.start_with?('//')
-       split_by_custom_delimiters(string_numbers)
+   def split(string_argument)
+     if string_argument.start_with?('//')
+       split_by_custom_delimiters(string_argument)
      else
-       split_by_default_delimiters(string_numbers)
+       split_by_default_delimiters(string_argument)
      end
    end
 
@@ -34,14 +34,14 @@ class StringCalculator
      lines[0].slice(DELIMITER_INDICATOR.length,(lines[0].length) -1)
    end
 
-   def calculate(numbers)
-     total = numbers.collect { |x| x.to_i }
-     check_negatives(total)
-     total.reduce(:+)
+   def calculate(string_numbers)
+     numbers = string_numbers.collect { |x| x.to_i }
+     check_negatives(numbers)
+     numbers.reduce(:+)
    end
 
-   def check_negatives(total)
-     negatives = Array.new(total)
+   def check_negatives(numbers)
+     negatives = Array.new(numbers)
      negatives.keep_if {|x| x < 0 }
 
      unless negatives.empty?
